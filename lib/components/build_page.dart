@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 
 class PageBuild extends StatelessWidget {
@@ -26,12 +27,18 @@ class PageBuild extends StatelessWidget {
           ),
           Image.asset(imageUrl, height: 400,),
           Expanded(child: GestureDetector(
-            onTap: (){
-              print("google Oauth page");
+            onTap: () async {
+              // TODO: this will as auth and also to set the pref value
+              // final prefs = await SharedPreferences.getInstance();
+              // prefs.setBool("showHome", true);
             },
             child: Container(
               color: Theme.of(context).colorScheme.secondary,
-              child: Center(child: Text("Continue with email", style: GoogleFonts.russoOne(),)),
+              child: Center(
+                  child: Text("Continue with email",
+                    style: GoogleFonts.russoOne(),
+                  )
+              ),
             ),
           ))
         ],
