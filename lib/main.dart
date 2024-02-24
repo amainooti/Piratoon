@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:piratoon/pages/SplashScreen.dart';
-import 'package:piratoon/pages/home_page.dart';
+import 'package:piratoon/pages/onboarding_screen.dart';
 import 'package:piratoon/theme/theme.dart';
 
 void main() {
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       home: const SplashScreen(),
       routes: {
         '/splash': (context) => SplashScreen(),
-        '/home': (context) => HomePage()
+        '/onboarding': (context) => OnboardingScreen()
       },
     );
   }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:piratoon/pages/home_page.dart';
+import 'package:piratoon/pages/onboarding_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
         // Navigate to Home screen
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) => HomePage()),
+              MaterialPageRoute(builder: (context) => OnboardingScreen()),
             );
       },
     );
