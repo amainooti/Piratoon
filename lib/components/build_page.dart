@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:piratoon/api/google_signin_api.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 
@@ -25,13 +27,18 @@ class PageBuild extends StatelessWidget {
               ),
             ),
           ),
-          Image.asset(imageUrl, height: 400,),
+          Image.asset(imageUrl, height: 369,),
           Expanded(child: GestureDetector(
-            onTap: () async {
-              // TODO: this will as auth and also to set the pref value
-              // final prefs = await SharedPreferences.getInstance();
-              // prefs.setBool("showHome", true);
-            },
+            onTap:  () async {
+            GoogleSignInAccount? result = await signIn();
+              if (result != null) {
+            // Successfully signed in, you can handle the result here
+              print("Successfully signed in: ${result.displayName}");
+          } else {
+                // Failed to sign in, handle the error
+                print("Sign in failed");
+              }
+          },
             child: Container(
               color: Theme.of(context).colorScheme.secondary,
               child: Center(
@@ -45,4 +52,8 @@ class PageBuild extends StatelessWidget {
       ),
     );
   }
+}
+
+Future signIn() async{
+  await GoogleSignInApi.login();
 }
