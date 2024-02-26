@@ -13,10 +13,8 @@ class GoogleSignInApi {
         GoogleSignInAuthentication googleSignInAuth = await user.authentication;
 
         // Use googleSignInAuth.idToken as an identifier (it is unique for each user)
-        // Use googleSignInAuth.accessToken or googleSignInAuth.idToken to get the user's name
         userProvider.setUser(
           isLoggedIn: true,
-          // Adjust these lines based on your needs
           id: googleSignInAuth.idToken,
           name: user.displayName ?? "",
         );

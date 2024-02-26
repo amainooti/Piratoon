@@ -3,7 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:piratoon/pages/genre_page.dart';
 import 'package:piratoon/providers/user_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:uuid/uuid.dart';
 
 class SelectAvatarPage extends StatefulWidget {
   SelectAvatarPage({Key? key}) : super(key: key);
@@ -13,7 +12,7 @@ class SelectAvatarPage extends StatefulWidget {
 }
 
 class _SelectAvatarPageState extends State<SelectAvatarPage> {
-  List<String> _imageUrl = [
+  final List<String> _imageUrl = [
     "aquaman_icon.png",
     "atom_icon.png",
     "atomsmasher_icon.png",

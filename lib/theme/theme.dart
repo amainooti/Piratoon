@@ -1,3 +1,4 @@
+// app theme
 import 'package:flutter/material.dart';
 
 ThemeData appColor = ThemeData(

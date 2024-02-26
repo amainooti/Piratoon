@@ -54,7 +54,7 @@ class _PageBuildState extends State<PageBuild> {
                   // Get the UserProvider instance and check if the user is logged in
                   // UserProvider userProvider =
                   // Provider.of<UserProvider>(context, listen: false);
-                  print(userProvider?.user?.name);
+                  print(userProvider.user?.name);
                   if (userProvider.user != null) {
                     // Navigate to the Avatar page with the required data
                     Navigator.pushReplacement(
