@@ -17,7 +17,7 @@ class UserProvider with ChangeNotifier {
     final uuid = Uuid();
 
     _user = UserModel(
-      id: id ?? uuid.v4(),
+      id: id ?? uuid.v4(), // google auth sign in Id or uuid
       name: name ?? "John Doe", // Provide a default name or use a stored one
       isLoggedIn: isLoggedIn,
       selectedImageUrl: selectedImageUrl,

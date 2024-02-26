@@ -41,7 +41,7 @@ class _PageBuildState extends State<PageBuild> {
           ),
           Image.asset(
             widget.imageUrl,
-            height: 290,
+            height: 400,
           ),
           Expanded(
             child: GestureDetector(

@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:piratoon/components/genre_tile.dart';
 import 'package:piratoon/models/genre_model.dart';
+import 'package:piratoon/providers/genre_provider.dart';
+import 'package:provider/provider.dart';
+import 'package:piratoon/pages/home_page.dart';
 
 class GenrePage extends StatefulWidget {
   const GenrePage({Key? key}) : super(key: key);
@@ -29,7 +32,6 @@ class _GenrePageState extends State<GenrePage> {
     Interest(emoji: "🧟", genre: "zombie"),
   ];
 
-  List<int> selectedIndices = [];
   int maxSelections = 5;
 
   @override
@@ -48,38 +50,42 @@ class _GenrePageState extends State<GenrePage> {
             ),
           ),
           Expanded(
-            child: GridView.builder(
-              itemCount: _interests.length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-                crossAxisSpacing: 8,
-                mainAxisSpacing: 20,
-                childAspectRatio: 1.5, // Adjust this ratio as needed
-              ),
-              itemBuilder: (context, index) {
-                final interest = _interests[index];
-                final isSelected = selectedIndices.contains(index);
-
-                return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 5),
-                  child: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        if (isSelected) {
-                          selectedIndices.remove(index);
-                        } else {
-                          if (selectedIndices.length < maxSelections) {
-                            selectedIndices.add(index);
-                          }
-                        }
-                      });
-                    },
-                    child: GenreTile(
-                      emoji: interest.emoji,
-                      title: interest.genre,
-                      isSelected: isSelected,
-                    ),
+            child: Consumer<GenreProvider>(
+              builder: (context, provider, child) {
+                return GridView.builder(
+                  itemCount: _interests.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    crossAxisSpacing: 8,
+                    mainAxisSpacing: 20,
+                    childAspectRatio: 1.5, // Adjust this ratio as needed
                   ),
+                  itemBuilder: (context, index) {
+                    final interest = _interests[index];
+                    final isSelected = provider.selectedIndices.contains(index);
+
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 5),
+                      child: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            if (isSelected) {
+                              provider.toggleIndex(index);
+                            } else {
+                              if (provider.selectedIndices.length < maxSelections) {
+                                provider.toggleIndex(index);
+                              }
+                            }
+                          });
+                        },
+                        child: GenreTile(
+                          emoji: interest.emoji,
+                          title: interest.genre,
+                          isSelected: isSelected,
+                        ),
+                      ),
+                    );
+                  },
                 );
               },
             ),
@@ -90,20 +96,19 @@ class _GenrePageState extends State<GenrePage> {
             bottom: 16.0,
             child: ElevatedButton(
               onPressed: () {
-                if (selectedIndices.length < 5) {
-                  print("Select at least 5 genres");
+                if (Provider.of<GenreProvider>(context, listen: false).selectedIndices.length >= 5) {
+                  // At least 5 genres selected, navigate to HomePage
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomePage()),
+                  );
                 } else {
-                  final selectedGenres =
-                  selectedIndices.map((index) => _interests[index]).toList();
-
-                  // Handle continue button press with selectedGenres
-                  print("Continue button pressed with genres: $selectedGenres");
+                  // Less than 5 genres selected, print a message
+                  print("Select at least 5 genres");
                 }
               },
               style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
+                shape: RoundedRectangleBorder(),
                 backgroundColor: Theme.of(context).colorScheme.secondary,
                 minimumSize: const Size.fromHeight(80),
               ),

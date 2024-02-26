@@ -58,7 +58,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             right: 0,
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              height: 80, // Adjust the height as needed
+              height: 50, // Adjust the height as needed
               color: Colors.transparent,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
