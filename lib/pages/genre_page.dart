@@ -105,7 +105,7 @@ class _GenrePageState extends State<GenrePage> {
                   borderRadius: BorderRadius.circular(8),
                 ),
                 backgroundColor: Theme.of(context).colorScheme.secondary,
-                minimumSize: const Size.fromHeight(80),
+                minimumSize: const Size.fromHeight(82),
               ),
               child: Text(
                 "Continue",
