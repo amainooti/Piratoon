@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:piratoon/pages/SplashScreen.dart';
+import 'package:piratoon/pages/home_page.dart';
 import 'package:piratoon/pages/onboarding_screen.dart';
 import 'package:piratoon/pages/select_avatar_page.dart';
 import 'package:piratoon/providers/genre_provider.dart';
@@ -35,7 +36,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/splash': (context) => SplashScreen(),
         '/onboarding': (context) => OnboardingScreen(),
-        '/select_avatar': (context) => SelectAvatarPage()
+        '/select_avatar': (context) => SelectAvatarPage(),
+        '/home' : (context) => HomePage()
       },
     );
   }
