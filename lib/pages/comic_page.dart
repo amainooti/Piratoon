@@ -3,8 +3,10 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:piratoon/components/Brand.dart';
 import 'package:piratoon/components/recommended_tile.dart';
-
+import 'package:piratoon/providers/user_provider.dart';
+import 'package:provider/provider.dart';
 
 
 class ComicPage extends StatefulWidget {
@@ -18,6 +20,7 @@ class _ComicPageState extends State<ComicPage> {
   TextEditingController _controller = TextEditingController();
   PageController _pageController = PageController();
   int _currentPage = 0;
+
   @override
   void initState() {
     super.initState();
@@ -37,6 +40,7 @@ class _ComicPageState extends State<ComicPage> {
   }
   @override
   Widget build(BuildContext context) {
+    var userProvider = Provider.of<UserProvider>(context);
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
       body: ListView(
@@ -49,8 +53,8 @@ class _ComicPageState extends State<ComicPage> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    //TODO: Change static text
-                    Text("Hey Prince,",
+                    //TODO: fetch from backend rather than provider i.e also a dead code
+                    Text("${userProvider.user?.name},",
                       style: TextStyle(
                       color: Color(0xFF7C8185)
                     ),),
@@ -60,10 +64,12 @@ class _ComicPageState extends State<ComicPage> {
                   ],
 
                 ),
-                //TODO:Change Place holder image
+                //TODO:Change Place holder image to Image stored in provider
                 CircleAvatar(
-                  child: Image.asset('lib/images/batman_icon.png'),
+                  // below here lies a dead code that is never executed, I'd change it tho when connected to a DB
+                  backgroundImage: AssetImage( 'lib/images/${userProvider.user?.selectedImageUrl}' ?? 'lib/images/batman_icon.png'),
                   radius: 40,
+                  backgroundColor: Colors.transparent,
                 )
               ],
             ),
@@ -89,6 +95,8 @@ class _ComicPageState extends State<ComicPage> {
             ),
           ),
           const SizedBox(height: 20,),
+
+          // TODO: Recommended for you section is going to take the selected genre array and show matching genre
           Padding(
             padding: const EdgeInsets.only(top:8.0, left: 20),
             child: Text("Recommended for you", style: GoogleFonts.russoOne(
@@ -117,7 +125,7 @@ class _ComicPageState extends State<ComicPage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: List.generate(
-              4, // Number of pages in PageView
+              4, // Number of pages in PageView TODO: refactor to have RecommendedTile in List to get the length here
                   (index) => buildDotIndicator(index),
             ),
           ),
@@ -129,6 +137,44 @@ class _ComicPageState extends State<ComicPage> {
               style: GoogleFonts.russoOne(
                 fontSize: 20
               ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 13, left: 26.0, right: 26.0),
+            child: SizedBox(
+              height: 70,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: [
+                  Brand(
+                    brandTitle: "DC",
+                    brandImage: "lib/images/Dc.png",
+                  ),
+                  SizedBox(width: 20,),
+                  Brand(
+                    brandTitle: "Marvel",
+                    brandImage: "lib/images/marvel.png",
+                  ),
+                  SizedBox(width: 20,),
+                  Brand(
+                    brandImage: "lib/images/darkhorse.png",
+                    brandTitle: "Dark Horse",
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.all(26),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text("Newest Releases", style: GoogleFonts.russoOne(
+                  fontSize: 20
+                )),
+                Icon(Icons.arrow_forward)
+              ],
+
             ),
           ),
         ],

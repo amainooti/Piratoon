@@ -82,6 +82,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       controller.jumpToPage(2);
                     },
                     // change the Skip text if its the last page
+
+                    //  TODO: when refactoring change to this code
+                    /*    Visibility(
+                             visible: isLastPage,  // Set this to true or false based on your condition
+                             child: Text(
+                              'Skip',
+                            style: GoogleFonts.russoOne(
+                            color: Theme.of(context).colorScheme.secondary
+                                 ),),
+)                  */
+                    // change the Skip text if its the last page
                     child: Text( isLastPage ? "" : "Skip",
                       style: GoogleFonts.russoOne(color: Theme.of(context).colorScheme.secondary),),
                   ),
