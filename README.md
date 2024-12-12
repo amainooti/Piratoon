@@ -16,15 +16,11 @@
 - **SharedPreferences**: Stores user preferences locally to maintain a personalized experience.
 - **Dart**: The programming language used in developing the app.
 
-## Sample
-In room real time reading
-
+### Sample
 [![Screenshot](https://res.cloudinary.com/dlqzokzi3/image/upload/v1733995949/Screenshot_from_2024-12-12_10-32-17_h72eb8.png)](https://res.cloudinary.com/dlqzokzi3/image/upload/v1733995949/Screenshot_from_2024-12-12_10-32-17_h72eb8.png)
 
-character selection
 [![Screenshot](https://res.cloudinary.com/dlqzokzi3/image/upload/v1733995914/Screenshot_from_2024-12-12_10-27-16_j7kvf0.png)](https://res.cloudinary.com/dlqzokzi3/image/upload/v1733995914/Screenshot_from_2024-12-12_10-27-16_j7kvf0.png)
 
-Book preview
 
 [![Screenshot](https://res.cloudinary.com/dlqzokzi3/image/upload/v1733995915/Screenshot_from_2024-12-12_10-27-19_l38lsu.png)](https://res.cloudinary.com/dlqzokzi3/image/upload/v1733995915/Screenshot_from_2024-12-12_10-27-19_l38lsu.png)
 ## Installation and Setup
